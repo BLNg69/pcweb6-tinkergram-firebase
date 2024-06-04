@@ -15,12 +15,13 @@ export default function PostPageAdd() {
   const [previewImage, setPreviewImage] = useState(
     "https://zca.sg/img/placeholder"
   );
+  const [imageName, setImageName] = useState("");
 
   async function addPost() {
     const imageReference = ref(storage, `images/${image.name}`);
     const response = await uploadBytes(imageReference, image);
     const imageUrl = await getDownloadURL(response.ref);
-    await addDoc(collection(db, "posts"), { caption, image: imageUrl });
+    await addDoc(collection(db, "posts"), { caption, image: imageUrl, imageName: imageName });
     navigate("/");
   }
 
@@ -61,12 +62,13 @@ export default function PostPageAdd() {
               type="file"
               onChange={(e) => { 
                 const imageFile = e.target.files[0];
-                setImage(imageFile);
                 const previewImage = URL.createObjectURL(imageFile);
+                setImage(imageFile);
                 setPreviewImage(previewImage);
+                setImageName(imageFile.name)
               }}
             />
-            
+
             <Form.Text className="text-muted">
               Make sure the url has a image type at the end: jpg, jpeg, png.
             </Form.Text>
