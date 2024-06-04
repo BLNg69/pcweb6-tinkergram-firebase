@@ -3,7 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-
+import Navigation from "../components/Navigation";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -48,6 +48,8 @@ export default function LoginPage() {
   };
 
   return (
+    <>
+    <Navigation />
     <Container>
       <h1 className="my-3">Login to your account</h1>
       <Form>
@@ -91,5 +93,6 @@ export default function LoginPage() {
       </Form>
       <p>{error}</p>
     </Container>
+    </>
   );
 }

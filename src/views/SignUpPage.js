@@ -3,6 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import Navigation from "../components/Navigation";
 
 export default function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -45,6 +46,8 @@ export default function SignUpPage() {
   };
 
   return (
+    <>
+    <Navigation />
     <Container>
       <h1 className="my-3">Sign up for an account</h1>
       <Form>
@@ -89,5 +92,6 @@ export default function SignUpPage() {
       </Form>
       <p>{error}</p>
     </Container>
+    </>
   );
 }
